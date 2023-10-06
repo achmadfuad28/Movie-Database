@@ -5,14 +5,14 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.2.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.6.0")
+        classpath(Dependencies.gradle)
+        classpath(Dependencies.gradlePlugin)
+        classpath(Dependencies.saveArgs)
     }
 }
 plugins {
-    alias(libs.plugins.com.android.application) apply false
-    alias(libs.plugins.org.jetbrains.kotlin.android) apply false
-    alias(libs.plugins.com.android.library) apply false
+    id(Plugins.androidApp) version Versions.androidVersion apply false
+    id(Plugins.library) version Versions.libraryVersion apply false
+    id(Plugins.kotlinAndroid) version Versions.kotlinVersion apply false
+    id(Plugins.jetbrains) version Versions.jetbrainsVersion apply false
 }
-true // Needed to make the Suppress annotation work for the plugins block
