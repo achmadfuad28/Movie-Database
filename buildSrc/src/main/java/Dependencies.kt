@@ -8,6 +8,8 @@ object Dependencies {
         const val core = "androidx.core:core-ktx:${Versions.coreVersion}"
         const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompatVersion}"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintVersion}"
+        const val navFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navVersion}"
+        const val navUi = "androidx.navigation:navigation-ui-ktx:${Versions.navVersion}"
     }
 
     object Kotlin {

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Movie Database</string>
+
+    <string name="nav_title_home">Home</string>
+    <string name="nav_title_favorite">Favorite</string>
+
+    <string name="title_home">Movies For You</string>
+    <string name="title_favorite">Favorite Movies</string>
+    <string name="title_detail">Detail</string>
+
+    <string name="text_search">Cari disini</string>
 </resources>

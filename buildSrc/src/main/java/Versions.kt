@@ -21,6 +21,7 @@ object Versions {
     const val constraintVersion = "2.1.4"
     const val coroutinesVersion = "1.6.2"
     const val materialVersion = "1.9.0"
+    const val navVersion ="2.5.1"
 
     const val junitVersion = "4.13.2"
     const val espressoVersion = "3.5.1"

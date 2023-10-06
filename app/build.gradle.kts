@@ -46,6 +46,9 @@ dependencies {
     with(Dependencies.AndroidX) {
         implementation(appCompat)
         implementation(constraintLayout)
+
+        implementation(navFragment)
+        implementation(navUi)
     }
     with(Dependencies.Test) {
         testImplementation(junit)
