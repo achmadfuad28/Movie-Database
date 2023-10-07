@@ -26,4 +26,9 @@ object Versions {
     const val junitVersion = "4.13.2"
     const val espressoVersion = "3.5.1"
     const val junittestVersion = "1.1.5"
+
+    const val retrofit = "2.9.0"
+    const val glideVersion = "4.13.2"
+    const val koin = "3.2.0"
+    const val chuckerVersion = "3.5.2"
 }
