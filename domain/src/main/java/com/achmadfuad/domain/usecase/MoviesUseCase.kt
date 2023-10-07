@@ -8,7 +8,7 @@ import com.achmadfuad.domain.repository.MovieRepository
 
 import kotlinx.coroutines.flow.Flow
 
-class MovieUseCase(private val repo: MovieRepository) : PagingFlowUseCase<MovieParam, PagingData<Movie>>() {
+class MoviesUseCase(private val repo: MovieRepository) : PagingFlowUseCase<MovieParam, PagingData<Movie>>() {
     override suspend fun execute(param: MovieParam?): Flow<PagingData<Movie>> {
         return repo.getMovies(param?.sKey.orEmpty(), param?.type)
     }

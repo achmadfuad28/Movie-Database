@@ -8,22 +8,18 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.achmadfuad.domain.model.Movie
 import com.achmadfuad.domain.model.MovieParam
-import com.achmadfuad.domain.usecase.MovieUseCase
+import com.achmadfuad.domain.usecase.MoviesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HomeViewModel(
-    private val movieUseCase: MovieUseCase,
+    private val movieUseCase: MoviesUseCase,
     ) : ViewModel() {
     
     private val _latestMoviesResponse = MutableLiveData<PagingData<Movie>>()
     val latestMoviesResponse: LiveData<PagingData<Movie>> = _latestMoviesResponse
-    private val _latestSeriesResponse = MutableLiveData<PagingData<Movie>>()
-    val latestSeriesResponse: LiveData<PagingData<Movie>> = _latestSeriesResponse
-    private val _trendingResponse = MutableLiveData<PagingData<Movie>>()
-    val trendingResponse: LiveData<PagingData<Movie>> = _trendingResponse
 
     val loading = MutableLiveData(false)
 
@@ -31,7 +27,7 @@ class HomeViewModel(
         viewModelScope.launch {
             loading.value = true
             withContext(Dispatchers.IO) {
-                movieUseCase(MovieParam("Avengers", "movie")).cachedIn(viewModelScope)
+                movieUseCase(MovieParam("Avengers", "")).cachedIn(viewModelScope)
             }.collectLatest {
                 _latestMoviesResponse.value = it
                 loading.value = false

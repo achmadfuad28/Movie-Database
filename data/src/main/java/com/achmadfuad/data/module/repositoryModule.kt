@@ -5,5 +5,5 @@ import com.achmadfuad.domain.repository.MovieRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<MovieRepository> { MovieRepositoryImpl(service = get(), mapper = get()) }
+    single<MovieRepository> { MovieRepositoryImpl(service = get(), mapper = get(), movieDetailMapper = get()) }
 }

@@ -1,9 +1,11 @@
 package com.achmadfuad.moviedatabase.module
 
 
-import com.achmadfuad.domain.usecase.MovieUseCase
+import com.achmadfuad.domain.usecase.MovieDetailUseCase
+import com.achmadfuad.domain.usecase.MoviesUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    single { MovieUseCase(get()) }
+    single { MoviesUseCase(get()) }
+    single { MovieDetailUseCase(get()) }
 }

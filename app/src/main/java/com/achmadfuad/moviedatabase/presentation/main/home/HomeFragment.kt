@@ -5,8 +5,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import com.achmadfuad.core.BaseView
+import com.achmadfuad.core.extension.navigateTo
 import com.achmadfuad.moviedatabase.R
 import com.achmadfuad.moviedatabase.databinding.FragmentHomeBinding
 import com.achmadfuad.moviedatabase.presentation.utils.delegate.viewBinding
@@ -19,7 +19,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), BaseView {
     private val viewModel: HomeViewModel by viewModel()
 
     private val latestMoviesAdapter by lazy {
-        MovieAdapter(onClick = { _ ->
+        MovieAdapter(onClick = { id ->
+            navigateToDetailFragment(id)
 
         })
     }
@@ -27,13 +28,13 @@ class HomeFragment : Fragment(R.layout.fragment_home), BaseView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getMovies()
-        setupListener()
         setupAdapter()
         observeMovieResponse()
     }
 
-    private fun setupListener() {
-
+    private fun navigateToDetailFragment(id: String) {
+        val direction = HomeFragmentDirections.movieDetailAction(id)
+        navigateTo(direction)
     }
 
     private fun setupAdapter() {

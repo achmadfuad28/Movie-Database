@@ -5,4 +5,5 @@ import org.koin.dsl.module
 
 val mapperModule = module {
     factory { MovieMapper() }
+    factory { MovieDetailMapper() }
 }
