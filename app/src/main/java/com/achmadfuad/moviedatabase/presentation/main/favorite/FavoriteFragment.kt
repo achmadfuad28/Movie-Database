@@ -1,40 +1,57 @@
 package com.achmadfuad.moviedatabase.presentation.main.favorite
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import com.achmadfuad.core.BaseView
+import com.achmadfuad.core.data.Resource
+import com.achmadfuad.core.extension.navigateTo
+import com.achmadfuad.moviedatabase.R
 import com.achmadfuad.moviedatabase.databinding.FragmentFavoriteBinding
+import com.achmadfuad.moviedatabase.presentation.utils.delegate.viewBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : Fragment(R.layout.fragment_favorite), BaseView {
 
-    private var _binding: FragmentFavoriteBinding? = null
+    private val binding by viewBinding(FragmentFavoriteBinding::bind)
+    private val viewModel: FavoriteViewModel by viewModel()
 
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val viewModel =
-            ViewModelProvider(this)[FavoriteViewModel::class.java]
-
-        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textDashboard
-        viewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+    private val favoriteAdapter by lazy {
+        FavoriteMovieAdapter(onClick = { id ->
+            navigateToDetailFragment(id)
+        })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getFavoriteMovies()
+        setupAdapter()
+        observeMovieResponse()
+    }
+
+    private fun navigateToDetailFragment(id: String) {
+        val direction = FavoriteFragmentDirections.movieDetailAction(id)
+        navigateTo(direction)
+    }
+
+    private fun setupAdapter() {
+        binding.rvLatestMovies.run {
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = favoriteAdapter
+        }
+    }
+
+    private fun observeMovieResponse() {
+        observeData(viewModel.latestMoviesResponse) { result ->
+            result?.let {
+                when (it) {
+                    is Resource.Success -> {
+                        favoriteAdapter.submitList(it.model)
+                    }
+                    else -> Unit
+                }
+            }
+        }
     }
 }

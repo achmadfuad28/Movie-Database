@@ -9,6 +9,8 @@ data class MovieResponseItem(
     val name: String,
     @SerializedName("Year")
     val year: String,
+    @SerializedName("released")
+    val released: String,
     @SerializedName("Poster")
     val poster: String,
     @SerializedName("Type")

@@ -30,10 +30,11 @@ class MovieMapper : Mapper<MovieResponse, MovieModel> {
         return with(t) {
             Movie(
                 imdbID,
-                poster,
-                name,
-                type,
-                year
+                poster = poster,
+                title = name,
+                type = type,
+                year = year,
+                released = released
             )
         }
     }

@@ -1,22 +1,22 @@
-package com.achmadfuad.moviedatabase.presentation.main.home
+package com.achmadfuad.moviedatabase.presentation.main.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.achmadfuad.core.extension.loadImageWithRadius
 import com.achmadfuad.domain.model.Movie
 import com.achmadfuad.moviedatabase.R
-import com.achmadfuad.moviedatabase.databinding.ItemMovieBinding
+import com.achmadfuad.moviedatabase.databinding.ItemFavoriteMovieBinding
 
-class MovieAdapter(private val onClick: (String) -> Unit) :
-    PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallBack) {
+class FavoriteMovieAdapter(private val onClick: (String) -> Unit) :
+    ListAdapter<Movie, FavoriteMovieAdapter.MovieViewHolder>(MovieDiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_movie, parent, false)
-        val binding = ItemMovieBinding.bind(view)
+            .inflate(R.layout.item_favorite_movie, parent, false)
+        val binding = ItemFavoriteMovieBinding.bind(view)
         return MovieViewHolder(binding)
     }
 
@@ -29,15 +29,13 @@ class MovieAdapter(private val onClick: (String) -> Unit) :
         }
     }
 
-    class MovieViewHolder(private val binding: ItemMovieBinding) :
+    class MovieViewHolder(private val binding: ItemFavoriteMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Movie) {
             binding.apply {
                 ivMovie.loadImageWithRadius(data.poster)
-                tvTitle.text = data.title
-                tvYear.text = data.year
-                tvType.text = data.type
             }
+
         }
     }
 

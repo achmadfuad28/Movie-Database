@@ -7,8 +7,9 @@ import com.achmadfuad.data.module.serviceModule
 val appModule = listOf(
     networkModule,
     serviceModule,
+    roomModule,
     mapperModule,
     repositoryModule,
     useCaseModule,
-    viewModelModule
+    viewModelModule,
 )

@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HomeViewModel(
-    private val movieUseCase: MoviesUseCase,
+    private val movieUseCase: MoviesUseCase
     ) : ViewModel() {
     
     private val _latestMoviesResponse = MutableLiveData<PagingData<Movie>>()

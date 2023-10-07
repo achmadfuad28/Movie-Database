@@ -5,12 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.achmadfuad.core.data.Resource
+import com.achmadfuad.domain.repository.MovieListLocalSource
 import com.achmadfuad.domain.model.Movie
 import com.achmadfuad.domain.usecase.MovieDetailUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DetailViewModel(
-    private val movieDetailUseCase: MovieDetailUseCase
+    private val movieDetailUseCase: MovieDetailUseCase,
+    private val localSource: MovieListLocalSource
     ) : ViewModel() {
     private val _movieDetailResponse = MutableLiveData<Resource<Movie>>()
     val movieDetailResponse: LiveData<Resource<Movie>> = _movieDetailResponse
@@ -28,4 +32,11 @@ class DetailViewModel(
         }
     }
 
+    fun addToFavorite(movie: Movie) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                localSource.addMovieToFavorite(movie)
+            }
+        }
+    }
 }

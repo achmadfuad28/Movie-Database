@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.library)
     id(Plugins.kotlinAndroid)
+    id(Plugins.kotlinKapt)
 }
 
 android {
@@ -56,4 +57,7 @@ dependencies {
         implementation(retrofit2)
         implementation(okhttp3Logging)
     }
+
+    implementation("androidx.room:room-runtime:2.4.0")
+    kapt("androidx.room:room-compiler:2.4.0")
 }

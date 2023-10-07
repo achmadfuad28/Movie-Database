@@ -9,9 +9,10 @@
         android:id="@+id/navigation_home"
         android:name="com.achmadfuad.moviedatabase.presentation.main.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
-        <action android:id="@+id/movieDetailAction"
-            app:destination="@id/detail_fragment"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/movieDetailAction"
+            app:destination="@id/detail_fragment" />
         <argument
             android:name="id"
             android:defaultValue=""
@@ -22,7 +23,15 @@
         android:id="@+id/navigation_favorite"
         android:name="com.achmadfuad.moviedatabase.presentation.main.favorite.FavoriteFragment"
         android:label="@string/title_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/movieDetailAction"
+            app:destination="@id/detail_fragment" />
+        <argument
+            android:name="id"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/detail_fragment"
