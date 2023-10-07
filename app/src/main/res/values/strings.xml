@@ -10,4 +10,6 @@
     <string name="title_search">Search</string>
     <string name="message_empty_search_data">Tidak Ada Data ditemukan</string>
     <string name="message_empty_favorite">Tidak Ada Favorite saat ini</string>
+    <string name="btn_add_to_favorite">Add To Favorite</string>
+    <string name="message_success_add_to_favorite">Berhasil Menambahkan ke Favorite</string>
 </resources>

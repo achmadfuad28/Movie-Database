@@ -2,6 +2,7 @@ package com.achmadfuad.moviedatabase.presentation.detail
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.achmadfuad.core.BaseView
@@ -20,7 +21,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail), BaseView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.getFavoriteMovies()
         viewModel.getDetailMovie(detailArgs.id)
         observeDetailMovie()
     }
@@ -52,12 +53,33 @@ class DetailFragment : Fragment(R.layout.fragment_detail), BaseView {
                 }
             }
         }
+
+        observeData(viewModel.favoritesResponse) { result ->
+            result?.let { response ->
+                when (response) {
+                    is Resource.Success -> {
+                        response.model?.let { favoritesMovies ->
+                            if (favoritesMovies.any { it.imdbID == detailArgs.id }) {
+                                binding.btnAddToFavorite.isClickable = false
+                                binding.btnAddToFavorite.isEnabled = false
+                            }
+                        }
+                    }
+                    else -> Unit
+                }
+            }
+        }
     }
 
     private fun setupListener(movie: Resource.Success<Movie>) {
-        binding.ivPoster.setOnClickListener {
+
+        binding.btnAddToFavorite.setOnClickListener {
             movie.model?.let {
                 viewModel.addToFavorite(it)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.message_success_add_to_favorite), Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

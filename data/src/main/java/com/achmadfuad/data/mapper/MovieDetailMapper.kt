@@ -17,11 +17,11 @@ class MovieDetailMapper :
                 type = type,
                 rated = rated,
                 released = released,
-                runtime = runtime,
+                runtime = "Durasi : $runtime",
                 genre = genre,
-                director = director,
-                writer = writer,
-                actor = actors,
+                director = "Sutradara : $director",
+                writer = "Penulis : $writer",
+                actor = "Aktor : $actors",
                 plot = "Sinopsis : $plot"
             )
         }
