@@ -57,7 +57,8 @@ dependencies {
         implementation(retrofit2)
         implementation(okhttp3Logging)
     }
-
-    implementation("androidx.room:room-runtime:2.4.0")
-    kapt("androidx.room:room-compiler:2.4.0")
+    with(Dependencies.Room) {
+        implementation(runtime)
+        kapt(compiler)
+    }
 }

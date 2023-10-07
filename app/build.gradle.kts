@@ -85,9 +85,10 @@ dependencies {
         androidTestImplementation(junitTest)
         androidTestImplementation(espresso)
     }
-
-    implementation("androidx.room:room-runtime:2.4.0")
-    kapt("androidx.room:room-compiler:2.4.0")
+    with(Dependencies.Room) {
+        implementation(runtime)
+        kapt(compiler)
+    }
 }
 fun getApiKey(): String {
     val prop = Properties().apply {

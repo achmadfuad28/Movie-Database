@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.achmadfuad.core.BaseView
 import com.achmadfuad.core.data.Resource
 import com.achmadfuad.core.extension.navigateTo
+import com.achmadfuad.core.extension.visible
 import com.achmadfuad.moviedatabase.R
 import com.achmadfuad.moviedatabase.databinding.FragmentFavoriteBinding
 import com.achmadfuad.moviedatabase.presentation.utils.delegate.viewBinding
@@ -36,17 +37,21 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite), BaseView {
     }
 
     private fun setupAdapter() {
-        binding.rvLatestMovies.run {
+        binding.rvMovies.run {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = favoriteAdapter
         }
     }
 
     private fun observeMovieResponse() {
-        observeData(viewModel.latestMoviesResponse) { result ->
+        observeData(viewModel.favoritesResponse) { result ->
             result?.let {
                 when (it) {
                     is Resource.Success -> {
+                        if (it.model.isNullOrEmpty()) {
+                            binding.tvMessage.visible()
+                            return@observeData
+                        }
                         favoriteAdapter.submitList(it.model)
                     }
                     else -> Unit

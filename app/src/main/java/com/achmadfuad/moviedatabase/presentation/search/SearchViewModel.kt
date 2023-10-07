@@ -1,4 +1,4 @@
-package com.achmadfuad.moviedatabase.presentation.main.home
+package com.achmadfuad.moviedatabase.presentation.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeViewModel(
+class SearchViewModel(
     private val movieUseCase: MoviesUseCase
     ) : ViewModel() {
     
@@ -23,11 +23,11 @@ class HomeViewModel(
 
     val loading = MutableLiveData(false)
 
-    fun getMovies() {
+    fun getMoviesByQuery(query: String) {
         viewModelScope.launch {
             loading.value = true
             withContext(Dispatchers.IO) {
-                movieUseCase(MovieParam("Avengers", "")).cachedIn(viewModelScope)
+                movieUseCase(MovieParam("avengers $query")).cachedIn(viewModelScope)
             }.collectLatest {
                 _moviesResponse.value = it
                 loading.value = false

@@ -7,6 +7,7 @@
     <string name="title_home">Movies For You</string>
     <string name="title_favorite">Favorite Movies</string>
     <string name="title_detail">Detail</string>
-
-    <string name="text_search">Cari disini</string>
+    <string name="title_search">Search</string>
+    <string name="message_empty_search_data">Tidak Ada Data ditemukan</string>
+    <string name="message_empty_favorite">Tidak Ada Favorite saat ini</string>
 </resources>

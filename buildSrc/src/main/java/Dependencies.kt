@@ -11,9 +11,9 @@ object Dependencies {
         const val navFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navVersion}"
         const val navUi = "androidx.navigation:navigation-ui-ktx:${Versions.navVersion}"
 
-        const val workRuntime = "androidx.work:work-runtime-ktx:2.7.1"
-        const val paging = "androidx.paging:paging-runtime:3.0.0"
-        const val fragment = "androidx.fragment:fragment-ktx:1.5.2"
+        const val workRuntime = "androidx.work:work-runtime-ktx:${Versions.workerVersion}"
+        const val paging = "androidx.paging:paging-runtime:${Versions.pagingRuntimeVersion}"
+        const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragmentVersion}"
     }
 
     object Kotlin {
@@ -22,7 +22,7 @@ object Dependencies {
     }
 
     object Google {
-        const val gson = "com.google.code.gson:gson:2.9.1"
+        const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
         const val material = "com.google.android.material:material:${Versions.materialVersion}"
     }
     object Test {
@@ -48,9 +48,9 @@ object Dependencies {
     }
 
     object SquareUp {
-        const val okhttp3Logging = "com.squareup.okhttp3:logging-interceptor:4.9.3"
-        const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-        const val retrofit2Converter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+        const val okhttp3Logging = "com.squareup.okhttp3:logging-interceptor:${Versions.retrofitLoggingVersion}"
+        const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
+        const val retrofit2Converter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
     }
 
     object Chucker {
@@ -58,5 +58,9 @@ object Dependencies {
         const val chuckerNoOp = "com.github.chuckerteam.chucker:library-no-op:${Versions.chuckerVersion}"
     }
 
+    object Room {
+        const val runtime = "androidx.room:room-runtime:${Versions.roomVersion}"
+        const val compiler = "androidx.room:room-compiler:${Versions.roomVersion}"
 
+    }
 }

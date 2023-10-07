@@ -11,6 +11,9 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
+            android:id="@+id/searchAction"
+            app:destination="@id/navigation_search" />
+        <action
             android:id="@+id/movieDetailAction"
             app:destination="@id/detail_fragment" />
         <argument
@@ -41,6 +44,20 @@
         <argument
             android:name="id"
             android:defaultValue="0"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.achmadfuad.moviedatabase.presentation.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/movieDetailAction"
+            app:destination="@id/detail_fragment" />
+        <argument
+            android:name="id"
+            android:defaultValue=""
             app:argType="string" />
     </fragment>
 
