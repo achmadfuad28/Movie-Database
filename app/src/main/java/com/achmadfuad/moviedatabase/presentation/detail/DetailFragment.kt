@@ -76,6 +76,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail), BaseView {
         binding.btnAddToFavorite.setOnClickListener {
             movie.model?.let {
                 viewModel.addToFavorite(it)
+                binding.btnAddToFavorite.isClickable = false
+                binding.btnAddToFavorite.isEnabled = false
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.message_success_add_to_favorite), Toast.LENGTH_SHORT
