@@ -1,0 +1,3 @@
+[submodule "Marvel-Movie-DB"]
+	path = Marvel-Movie-DB
+	url = https://github.com/achmadfuad28/Marvel-Movie-DB.git
